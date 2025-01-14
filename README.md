@@ -404,4 +404,38 @@ Then install eslint again: <code>npm install -g eslint</code>
 
 
 
+
+curl -L \
+  -X PUT \
+  -H "Accept: application/vnd.github+json" \
+  -H "Authorization: Bearer <YOUR-TOKEN>" \
+  -H "X-GitHub-Api-Version: 2022-11-28" \
+  https://api.github.com/user/blocks/USERNAME
+
+
+
+  // Octokit.js
+// https://github.com/octokit/core.js#readme
+const octokit = new Octokit({
+  auth: 'YOUR-TOKEN'
+})
+
+await octokit.request('PUT /user/blocks/{username}', {
+  username: 'USERNAME',
+  headers: {
+    'X-GitHub-Api-Version': '2022-11-28'
+  }
+})
+
+
+
+# GitHub CLI api
+# https://cli.github.com/manual/gh_api
+
+gh api \
+  --method PUT \
+  -H "Accept: application/vnd.github+json" \
+  -H "X-GitHub-Api-Version: 2022-11-28" \
+  /user/blocks/USERNAME
+
   
